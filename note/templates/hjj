@@ -1,0 +1,31 @@
+<script type="text/javascript">
+function make_note(event) {     
+    alert('hi');      
+    note = document.getElementById('#note').value;
+
+    csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+
+    $.ajax({
+        type:"POST",
+        url: 'make_note',
+        dataType: 'JSON',
+        data:{
+            'csrfmiddlewaretoken': csrfmiddlewaretoken,
+            'note': note,
+            'status':''
+        },
+        success : function(data){
+            if(data['status'] == "200") {
+            $('#loading').show()
+            $('#loading').append('<p>Loading..........</p>')
+            //$('#loading').html('')
+            setTimeout(function(){
+            window.location.href = "/note"
+            }, 3000);
+            console.log(data['status']);
+            document.getElementById("#form").reset();
+            $("#view_note").append('<div class="col-md-6"><div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"><div class="col p-4 d-flex flex-column position-static"><h3 class="mb-0">' + json.title + hi '</h3><p class="mb-auto"> json.description</p></div></div></div>')                       
+        }
+
+    })
+}
