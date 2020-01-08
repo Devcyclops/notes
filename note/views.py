@@ -4,9 +4,13 @@ from django.http import JsonResponse
 from .models import Note
 
 note = Note()
+
+
+
 def home(request):
     all_notes = Note.objects.all()
     return render(request, 'home.html',{'notes':all_notes}) 
+
 
 
 def make_notes(request):
